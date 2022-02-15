@@ -58,7 +58,22 @@ if (isset($_POST["action"])) {
 
 
 
-    
+    function compress_image($source_url, $destination_url, $quality)
+    {
+      $info = getimagesize($source_url);
+
+      if ($info['mime'] == 'image/jpeg') {
+        $image = imagecreatefromjpeg($source_url);
+        imagejpeg($image, $destination_url, $quality);
+        echo "เพิ่มรูปภาพสำเร็จ";
+      } elseif ($info['mime'] == 'image/gif') {
+        $image = imagecreatefromgif($source_url);
+        imagegif($image, $destination_url);
+      } elseif ($info['mime'] == 'image/png') {
+        $image = imagecreatefrompng($source_url);
+        imagepng($image, $destination_url);
+      }
+    }
 
 
 
@@ -80,8 +95,6 @@ if (isset($_POST["action"])) {
       }
     }
   }
-
-
   if ($_POST["action"] == "update") {
     $date = date("Y-m-d H:i:s");
     $file = $date . $file;
@@ -97,61 +110,4 @@ if (isset($_POST["action"])) {
       echo 'ลบข้อมูลสำเร็จ';
     }
   }
-}
-
-
-
-function upload_image()
-{
-  $uploadTo = "uploads/";
-  $allowImageExt = array('jpg', 'png', 'jpeg', 'gif');
-  $imageName = $_FILES['image']['name'];
-  $tempPath = $_FILES["image"]["tmp_name"];
-  $imageQuality = 60;
-  $basename = basename($imageName);
-  $originalPath = $uploadTo . $basename;
-  $imageExt = pathinfo($originalPath, PATHINFO_EXTENSION);
-  if (empty($imageName)) {
-    $error = "Please Select files..";
-    return $error;
-  } else {
-
-    if (in_array($imageExt, $allowImageExt)) {
-      $compressedImage = compress_image($tempPath, $originalPath, $imageQuality);
-      if ($compressedImage) {
-        return "Image was compressed and uploaded to server";
-      } else {
-        return "Some error !.. check your script";
-      }
-    } else {
-      return "Image Type not allowed";
-    }
-  }
-}
-function compress_image($tempPath, $originalPath, $imageQuality)
-{
-
-  // Get image info 
-  $imgInfo = getimagesize($tempPath);
-  $mime = $imgInfo['mime'];
-
-  // Create a new image from file 
-  switch ($mime) {
-    case 'image/jpeg':
-      $image = imagecreatefromjpeg($tempPath);
-      break;
-    case 'image/png':
-      $image = imagecreatefrompng($tempPath);
-      break;
-    case 'image/gif':
-      $image = imagecreatefromgif($tempPath);
-      break;
-    default:
-      $image = imagecreatefromjpeg($tempPath);
-  }
-
-  // Save image 
-  imagejpeg($image, $originalPath, $imageQuality);
-  // Return compressed image 
-  return $originalPath;
 }
