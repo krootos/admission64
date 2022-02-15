@@ -1,0 +1,693 @@
+<?php
+function insertregister($data)
+{
+
+    //Query ???????? 1
+    /*$sql_select = "SELECT * from sas_register";
+    $a          = mysql_query($sql_select);
+    $rowsold    = mysql_num_rows($a);*/
+
+//Query ???????? 2
+    $sql = "INSERT INTO sas_register";
+    $sql .= "(RegisNO, RegisPWD, RegisNaID)";
+    $sql .= "VALUES ";
+    $sql .= "('" . $data[0] . "','" . $data[1] . "','" . $data[2] . "')";
+
+   $result_register = mysql_query($sql);
+  // echo mysql_affected_rows();
+   // ถ้า insert ล้มเหลวจะได้ เท่ากับ - 1
+    //  ถ้า insert ผ่านจะได้ เท่ากับ 1
+//Query ???????? 3
+   /* $sql_selectnew = "SELECT * from sas_register";
+    $anew          = mysql_query($sql_selectnew);
+    $rowsnew       = mysql_num_rows($anew);*/
+
+   // if ($rowsnew > $rowsold) {
+    if($result_register){
+        $sql_selectnew = "SELECT * from sas_register WHERE RegisNaID = ".$data[2]."";
+        $anew          = mysql_query($sql_selectnew);
+        if($anew){
+              $user  = mysql_fetch_array($anew);
+                $_SESSION["SUCCESS_REGISTER"] = 1 ; //สร้างตัวแปรเพื่เช็คว่ามีการ ลงทะเบียนข้อมูลไว้หรือยัง
+                $_SESSION["REGISNO"]    = $user["RegisNO"];
+                $_SESSION["REGISPWD"]   = $user["RegisPWD"];
+                $_SESSION["REGISNAID"]  = $user["RegisNaID"];
+        }
+       
+        ?>
+    	<div class="alert alert-success text-center" role="alert">
+    	<p style="font-size: 20px;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> ลงทะเบียนเรียบร้อยแล้ว
+    	</p>
+    	<p style="font-size: 20px;"><a href="index.php?regisdone=done">คลิกเข้าสู่ระบบผู้สมัครสอบ
+    	</a></p>
+        </div>
+         <div class="caption-full">
+        <div class="table-responsive">
+        <h3 style="color: #c7254e;"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> ข้อมูลการลงทะเบียน</h3>
+        <!--p>The .table-condensed class makes a table more compact by cutting cell padding in half:</p-->
+         <table class="table table-hover">
+         <thead>
+            <tr>
+               
+                <th>รหัสเข้าใช้งาน</th>
+                <th>รหัสผ่าน</th>
+                <th>รหัสบัตรประจำตัวประชาชน</th>
+
+                <th>เปลี่ยนแปลงข้อมูลรหัสผ่าน</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                
+                <td><?php echo "$data[0]"; ?></td>
+                <td><?php echo "$data[1]"; ?></td>
+                <td><?php echo "$data[2]"; ?></td>
+           
+                <td><?php echo "<a href=\"\"><span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span> เปลี่ยนแปลงข้อมูลติดต่อผู้ดูแลระบบ</a>"; ?>
+                </td>
+              
+            </tr>
+        </tbody>
+         </table>
+        </div>
+        </div>
+<?php
+} else {?>
+		<div class="alert alert-danger text-center" role="alert">
+		<i><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> ล้มเหลว ข้อมูลนี้ได้ลงทะเบียนไว้แล้ว
+		</i>
+         </div>
+
+	<?php }
+//mysql_close($connected);
+} ?>
+
+<?php
+if(isset($_SESSION["NaID"])){ $nid   = $_SESSION["NaID"]; }
+if(isset($_SESSION["SAS1"])){ $data1 = $_SESSION["SAS1"]; }
+if(isset($_SESSION["SAS2"])){ $data2 = $_SESSION["SAS2"]; }
+if(isset($_SESSION["SAS3"])){ $data3 = $_SESSION["SAS3"]; }
+if(isset($_SESSION["SAS4"])){ $data4 = $_SESSION["SAS4"]; }
+if(isset($_SESSION["SAS5"])){ $data5 = $_SESSION["SAS5"]; }
+if(isset($_SESSION["SAS6"])){ $data6 = $_SESSION["SAS6"]; }
+//if(isset($_SESSION["SAS7"])){ $data7 = $_SESSION["SAS7"]; }
+
+function insertstudentdata($data1, $data2, $data3, $data4, $data5, $data6, $data7, $nid)
+{
+    include "conn.php";
+    //Query ???????? 1
+   // $sql_select = "SELECT * from sas_studentdata";
+   // $a          = mysql_query($sql_select);
+    //$rowsold    = mysql_num_rows($a);
+
+//Query ???????? 2
+    date_default_timezone_set('Asia/Bangkok');
+    $year = date("Y")+543;
+    //$createdate =  date("d/m")."/".$year;
+    $createdate =  date("d / m")." / ".$year;
+    $sql = "INSERT INTO sas_studentdata";
+    $sql .="(NID, TYPE, OPTIONS, OPTIONSPECIAL, MORE, PLAN1, PLAN2, PLAN3, SNAME, FNAME, LNAME, BIRTHDAY, SEX, RELI, REGINAL, REGINALITY, GROUPBLOOD, HADDRESS, MOO, SOI, ROAD, PROVINCE_ID, DISTRICT_ID, AMPHUR_ID, TEL, EMAIL, GRADUATE, LSCHOOL, GPA, SNAMEFA, FNAMEFA,  LNAMEFA, TELFA, SNAMEMA, FNAMEMA, LNAMEMA, TELMA, FAMILYSTATUS, CREATEDATE, DAYCOME)";
+$sql .="VALUES ";
+$sql .="('".$nid."','".$data1[1]."','".$data2[1]."','".$data2[2]."','".$data2[3]."','".$data3[1]."','".$data3[2]."','".$data3[3]."','".$data4[1]."','".$data4[2]."','".$data4[3]."','".$data4[4]."'";
+$sql .=",'".$data4[5]."','".$data4[6]."','".$data4[7]."','".$data4[8]."','".$data4[9]."'";
+$sql .=",'".$data5[1]."','".$data5[2]."','".$data5[3]."','".$data5[9]."','".$data5[4]."','".$data5[6]."'";
+$sql .=",'".$data5[5]."','".$data5[7]."','".$data5[8]."','".$data6[1]."','".$data6[2]."'";
+$sql .=",'".$data6[3]."','".$data7[1]."','".$data7[2]."','".$data7[3]."','".$data7[4]."'";
+$sql .=",'".$data7[5]."','".$data7[6]."','".$data7[7]."','".$data7[8]."','".$data7[9]."','".$createdate."', '".$data3[4]."')";
+
+    $success_Query = mysql_query($sql);
+    mysql_affected_rows();
+//Query ???????? 3
+    /*$sql_selectnew = "SELECT * from sas_studentdata";
+    $anew          = mysql_query($sql_selectnew);
+    $rowsnew       = mysql_num_rows($anew);*/
+
+    if ($success_Query){
+        $_SESSION["insertsuccess"] = 1 ;
+         ///////////////
+         selectfirst($nid); // เรียกใช้ Function    selectfirst($nid);
+        ?>
+        <!--  -->
+<?php
+} else {?>
+        <div class="alert alert-danger text-center" role="alert">
+        <i><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> ล้มเหลว กรุณาติดต่อผู้ดูแล Tel 0805580193
+        </i>
+         </div>
+
+    <?php }
+//mysql_close();
+} ?>
+
+
+
+<?php
+function selectfirst($nid){
+    include "conn.php";
+
+        $sql_studata   = "SELECT NID, TYPE, OPTIONS, OPTIONSPECIAL, MORE, PLAN1, PLAN2, PLAN3, SNAME, FNAME, LNAME, BIRTHDAY, SEX, RELI, REGINAL, REGINALITY, GROUPBLOOD, HADDRESS, MOO, SOI, ROAD,  sd.PROVINCE_ID, sd.DISTRICT_ID, sd.AMPHUR_ID, TEL, EMAIL, GRADUATE, LSCHOOL, GPA, SNAMEFA, FNAMEFA,  LNAMEFA, TELFA, SNAMEMA, FNAMEMA, LNAMEMA, TELMA, FAMILYSTATUS, dt.DISTRICT_NAME , ap.POSTCODE, ap.AMPHUR_NAME, 
+                pv.PROVINCE_NAME, CREATEDATE, DAYCOME
+                FROM sas_studentdata as sd
+                INNER JOIN district as dt
+                ON sd.DISTRICT_ID = dt.DISTRICT_ID 
+                INNER JOIN amphur as ap
+                ON dt. AMPHUR_ID = ap. AMPHUR_ID
+                INNER JOIN province as pv
+                ON ap. PROVINCE_ID = pv. PROVINCE_ID
+                WHERE sd.NID = ".$nid."";
+                $resultstu  = mysql_query($sql_studata);
+                //$rows       = mysql_num_rows($resultstu);
+                if (mysql_num_rows($resultstu) > 0) {
+  // do while loop
+                $studata = mysql_fetch_array($resultstu);
+                //$rows    = mysql_fetch_row($resultstu);
+                //echo $rows[1];
+               $_SESSION["EDITE"][0] = $studata["NID"];
+               $_SESSION["EDITE"][1] = $studata["TYPE"];
+               $_SESSION["EDITE"][2] = $studata["OPTIONS"];
+
+               $_SESSION["EDITE"][3] = $studata["OPTIONSPECIAL"];
+               $_SESSION["EDITE"][4] = $studata["MORE"];
+               $_SESSION["EDITE"][5] = $studata["PLAN1"];
+               $_SESSION["EDITE"][6] = $studata["PLAN2"];
+               $_SESSION["EDITE"][7] = $studata["PLAN3"];
+
+               $_SESSION["EDITE"][8] = $studata["SNAME"];
+               $_SESSION["EDITE"][9] = $studata["FNAME"];
+               $_SESSION["EDITE"][10] = $studata["LNAME"];
+               $_SESSION["EDITE"][11] = $studata["BIRTHDAY"];
+               $_SESSION["EDITE"][12] = $studata["SEX"];
+               $_SESSION["EDITE"][13] = $studata["RELI"]; //ศาสนา
+
+               $_SESSION["EDITE"][14] = $studata["REGINAL"];
+               $_SESSION["EDITE"][15] = $studata["REGINALITY"];
+               $_SESSION["EDITE"][16] = $studata["GROUPBLOOD"];
+               $_SESSION["EDITE"][17] = $studata["HADDRESS"];
+               $_SESSION["EDITE"][18] = $studata["MOO"];
+               $_SESSION["EDITE"][19] = $studata["SOI"];
+
+               $_SESSION["EDITE"][20] = $studata["PROVINCE_ID"];
+               $_SESSION["EDITE"][21] = $studata["DISTRICT_ID"];
+               $_SESSION["EDITE"][22] = $studata["AMPHUR_ID"];
+               $_SESSION["EDITE"][23] = $studata["TEL"];
+               $_SESSION["EDITE"][24] = $studata["EMAIL"];
+               $_SESSION["EDITE"][25] = $studata["GRADUATE"];
+
+               $_SESSION["EDITE"][26] = $studata["LSCHOOL"];
+               $_SESSION["EDITE"][27] = $studata["GPA"];
+               $_SESSION["EDITE"][28] = $studata["SNAMEFA"];
+               $_SESSION["EDITE"][29] = $studata["FNAMEFA"];
+               $_SESSION["EDITE"][30] = $studata["LNAMEFA"];
+               $_SESSION["EDITE"][31] = $studata["TELFA"];
+               $_SESSION["EDITE"][32] = $studata["SNAMEMA"];
+               $_SESSION["EDITE"][33] = $studata["FNAMEMA"];
+               $_SESSION["EDITE"][34] = $studata["LNAMEMA"];
+               $_SESSION["EDITE"][35] = $studata["TELMA"];
+               $_SESSION["EDITE"][36] = $studata["FAMILYSTATUS"];
+               $_SESSION["EDITE"][37] = $studata["DISTRICT_NAME"];
+               $_SESSION["EDITE"][38] = $studata["POSTCODE"];
+               $_SESSION["EDITE"][39] = $studata["AMPHUR_NAME"];
+               $_SESSION["EDITE"][40] = $studata["PROVINCE_NAME"];
+               if(isset($_SESSION["RegisNO"])) { $_SESSION["EDITE"][41] = $_SESSION["RegisNO"];}
+               $_SESSION["EDITE"][42] = $studata["ROAD"];
+               $_SESSION["EDITE"][43] = $studata["CREATEDATE"];
+               $_SESSION["EDITE"][44] = $studata["DAYCOME"];
+              // $_SESSION["EDITE"][45] = $studata["SCHOOL_PROVINCE"];
+                //$aaa = date_format($studata["CREATEDATE"], '%d/%m/%Y');
+               
+                             //$strdate = $studata["DATECREATE"]; // 2017-02-28 18:51:33
+                            //$datecut = $studata["DATECREATE"];
+                             //$cutdate = explode(" ",$datecut);
+                            // $ddmm    = explode("-",$$cutdate[0]);
+               //$_SESSION["EDITE"][43]  = $ddmm[2]."/".$ddmm[1]."/".$ddmm[0];
+              include("create_pdf.php");
+
+?>
+        <div class="caption-full">
+        <div class="table-responsive">
+        <h3 style="color: #c7254e;"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> ข้อมูลการสมัครเรียน</h3>
+        <!--p>The .table-condensed class makes a table more compact by cutting cell padding in half:</p-->
+         <table class="table table-hover">
+         <thead>
+            <tr>
+               
+                <th>ระดับชั้นที่สมัคร</th>
+                <th>ชื่อ - นามสกุล</th>
+                <th>ประเภทนักเรียน</th>
+                <th>แผนการเรียน</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                
+                <td><?php echo "มัธยมศึกษาปีที่ ".$studata["TYPE"]; ?></td>
+                <td><?php echo $studata["SNAME"]."".$studata["FNAME"]." ".$studata["LNAME"] ; ?></td>
+                <td><?php echo $studata["OPTIONS"]; ?></td>
+                <td><?php echo $studata["PLAN1"]; ?></td>
+              
+                
+            </tr>
+        </tbody>
+         </table>
+
+     <table class="table table-hover">
+         <thead>
+            <tr>
+               
+                
+                <th>แก้ไขข้อมูล</th>
+                <th>พิมพ์ใบสมัคร</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                
+                <td><?php echo "<a href=\"?edite=true\"><span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span> แก้ไข</a>"; ?>
+                </td>
+
+                <td>
+                <a href="fpdf/MyPDF/<?php echo $pdf_file; ?>" target="_blank">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> พิมพ์ใบสมัคร</a>
+                <?php //echo "<a href=\"\"><span class=\"glyphicon glyphicon-print\" aria-hidden=\"true\"></span> พิมพ์ใบสมัคร</a>"; ?>
+                </td>
+                
+            </tr>
+        </tbody>
+         </table>
+
+
+        </div>
+        </div>
+<?php
+    
+
+        }
+        else{ // ถ้าไม่มีข้อมูล
+                 if(!isset($_POST['btnNext1'])){
+                        if(!isset($_POST['btnNext2'])){
+                            if(!isset($_POST['btnNext3'])){
+                                if(!isset($_POST['btnNext4'])){
+                                    if(!isset($_POST['btnNext5'])){
+                                        if(!isset($_POST['btnNext6'])){
+                                            if(!isset($_POST['btnNext7'])){
+                                                if(!isset($_GET['Refresh'])) {
+                                                include('section/breadcrumb.php');
+                                                include('section/1.php'); 
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+        }
+
+    mysql_close($connected);    
+}
+?>
+
+<?php 
+function SelectAfterRegister($nid) // ฟังก์ชั่นหลังจากลงทะเบียนแล้ว
+{
+    $sql_selectAfter    = "SELECT * from sas_register WHERE RegisNaID = ".$nid."";
+        $after          = mysql_query($sql_selectAfter);
+        if($after){
+              $user     = mysql_fetch_array($after);  
+
+
+        ?>
+        <div class="caption-full">
+        <div class="table-responsive">
+        <h3 style="color: #c7254e;"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> ข้อมูลการลงทะเบียน (กรุณาจดจำข้อมูล)</h3>
+        <!--p>The .table-condensed class makes a table more compact by cutting cell padding in half:</p-->
+         <table class="table table-hover">
+         <thead>
+            <tr>
+               
+                <th>รหัสเข้าใช้งาน</th>
+                <th>รหัสผ่าน</th>
+                <th>รหัสบัตรประจำตัวประชาชน</th>
+                <th>เปลี่ยนแปลงข้อมูลรหัสผ่าน</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                
+                <td><?php echo $user["RegisNO"]; ?></td>
+                <td><?php echo $user["RegisPWD"]; ?></td>
+                <td><?php echo $user["RegisNaID"]; ?></td>
+          
+                <td><?php echo "<a href=\"index.php\"><span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span>เปลี่ยนแปลงข้อมูลติดต่อผู้ดูแลระบบ</a>"; ?>
+                </td>
+              
+            </tr>
+        </tbody>
+         </table>
+        </div>
+        </div>
+<?php
+        }
+
+}
+
+
+function updatedatabt1($nid, $data){
+
+include "conn.php";
+ $strSQL = "UPDATE sas_studentdata SET ";
+$strSQL .="TYPE = '".$data."' ";
+//$strSQL .=",hid = '".$data[1]."' ";
+$strSQL .="WHERE NID = '".$nid."' ";
+$objQuery = mysql_query($strSQL);
+//mysql_affected_rows();
+
+
+    if($objQuery) { ?>
+                
+                <div class="alert alert-success" align="center">
+              <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+               </div>
+        <?php   echo "<script type=\"text/javascript\">";
+                echo "window.location=\"index.php?edite=true\" ";
+                echo "</script>";       
+        ?>
+    <?php   
+    } 
+    else {   ?>
+  
+               <div class="alert alert-danger" align="center">
+              <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+               </div>
+        <?php
+    }
+        
+mysql_close($connected); 
+}
+
+function updatedatabt2($nid, $data){
+
+include "conn.php";
+ $strSQL = "UPDATE sas_studentdata SET ";
+$strSQL .="SNAME = '".$data[1]."' ";
+$strSQL .=",FNAME = '".$data[2]."' ";
+$strSQL .=",LNAME = '".$data[3]."' ";
+$strSQL .=",BIRTHDAY = '".$data[4]."' ";
+$strSQL .=",SEX= '".$data[5]."' ";
+$strSQL .=",RELI = '".$data[6]."' ";
+$strSQL .=",REGINAL = '".$data[7]."' ";
+$strSQL .=",REGINALITY = '".$data[8]."' ";
+$strSQL .=",GROUPBLOOD = '".$data[9]."' ";
+$strSQL .="WHERE NID = '".$nid."' ";
+$objQuery = mysql_query($strSQL);
+//mysql_affected_rows();
+
+
+    if($objQuery) { ?>
+                
+                <div class="alert alert-success" align="center">
+              <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+               </div>
+        <?php   echo "<script type=\"text/javascript\">";
+                echo "window.location=\"index.php?edite=true\" ";
+                echo "</script>";      
+        ?>
+    <?php   
+    } 
+    else {   ?>
+  
+               <div class="alert alert-danger" align="center">
+              <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+               </div>
+        <?php
+    }
+        
+mysql_close($connected); 
+}
+
+
+function updatedatabt3($nid, $data){
+
+include "conn.php";
+ $strSQL = "UPDATE sas_studentdata SET ";
+$strSQL .="HADDRESS = '".$data[1]."' ";
+$strSQL .=",MOO = '".$data[2]."' ";
+$strSQL .=",SOI = '".$data[3]."' ";
+$strSQL .=",ROAD = '".$data[9]."' ";
+$strSQL .=",PROVINCE_ID= '".$data[4]."' ";
+if($data[6] != ""){
+$strSQL .=",DISTRICT_ID = '".$data[6]."' ";
+}
+if($data[5] != ""){
+$strSQL .=",AMPHUR_ID = '".$data[5]."' ";
+}
+$strSQL .=",TEL = '".$data[7]."' ";
+$strSQL .=",EMAIL = '".$data[8]."' ";
+$strSQL .="WHERE NID = '".$nid."' ";
+$objQuery = mysql_query($strSQL);
+//mysql_affected_rows();
+
+
+    if($objQuery) { ?>
+                
+                <div class="alert alert-success" align="center">
+              <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+               </div>
+        <?php   echo "<script type=\"text/javascript\">";
+                echo "window.location=\"index.php?edite=true\" ";
+                echo "</script>";      
+        ?>
+    <?php   
+    } 
+    else {   ?>
+  
+               <div class="alert alert-danger" align="center">
+              <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+               </div>
+        <?php
+    }
+        
+mysql_close($connected); 
+}
+
+function updatedatabt4($nid, $data){
+
+include "conn.php";
+ $strSQL = "UPDATE sas_studentdata SET ";
+$strSQL .="OPTIONS = '".$data[1]."' ";
+//if($data[2] != ""){
+$strSQL .=",OPTIONSPECIAL = '".$data[2]."' ";
+//}
+if($data[3] != ""){
+$strSQL .=",MORE = '".$data[3]."' ";
+}
+$strSQL .="WHERE NID = '".$nid."' ";
+ $objQuery = mysql_query($strSQL);
+//mysql_affected_rows();
+
+
+    if($objQuery) { ?>
+                
+                <div class="alert alert-success" align="center">
+              <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+               </div>
+        <?php   echo "<script type=\"text/javascript\">";
+                echo "window.location=\"index.php?edite=true\" ";
+                echo "</script>";      
+        ?>
+    <?php   
+    } 
+    else {   ?>
+  
+               <div class="alert alert-danger" align="center">
+              <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+               </div>
+        <?php
+    }
+        
+mysql_close($connected); 
+}
+
+function updatedatabt5($nid, $datadd){
+//echo $datadd[1]."<br>";
+//echo $datadd[2]."<br>";
+//echo $datadd[3]."<br>";
+include "conn.php";
+ $strSQL = "UPDATE sas_studentdata SET ";
+$strSQL .="PLAN1 = '".$datadd[1]."' ";
+$strSQL .=",PLAN2 = '".$datadd[2]."' ";
+if($datadd[3] != ""){
+$strSQL .=",PLAN3 = '".$datadd[3]."' ";
+}
+$strSQL .="WHERE NID = '".$nid."' ";
+$objQuery = mysql_query($strSQL);
+//mysql_affected_rows();
+
+
+    if($objQuery) { ?>
+                
+                <div class="alert alert-success" align="center">
+              <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+               </div>
+        <?php   echo "<script type=\"text/javascript\">";
+                echo "window.location=\"index.php?edite=true\" ";
+                echo "</script>";      
+        ?>
+    <?php   
+    } 
+    else {   ?>
+  
+               <div class="alert alert-danger" align="center">
+              <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+               </div>
+        <?php
+    }
+        
+mysql_close($connected); 
+}
+
+function updatedatabt6($nid, $data){
+
+include "conn.php";
+ $strSQL = "UPDATE sas_studentdata SET ";
+$strSQL .="LSCHOOL = '".$data[1]."' ";
+$strSQL .=",GPA = '".$data[2]."' ";
+$strSQL .="WHERE NID = '".$nid."' ";
+$objQuery = mysql_query($strSQL);
+//mysql_affected_rows();
+
+
+    if($objQuery) { ?>
+                
+                <div class="alert alert-success" align="center">
+              <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+               </div>
+        <?php   echo "<script type=\"text/javascript\">";
+                echo "window.location=\"index.php?edite=true\" ";
+                echo "</script>";      
+        ?>
+    <?php   
+    } 
+    else {   ?>
+  
+               <div class="alert alert-danger" align="center">
+              <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+               </div>
+        <?php
+    }
+        
+mysql_close($connected); 
+}
+
+function updatedatabt7($nid, $data){
+
+include "conn.php";
+$strSQL = "UPDATE sas_studentdata SET ";
+$strSQL .="SNAMEFA = '".$data[1]."' ";
+$strSQL .=",FNAMEFA = '".$data[2]."' ";
+$strSQL .=",LNAMEFA = '".$data[3]."' ";
+$strSQL .=",TELFA = '".$data[4]."' ";
+$strSQL .=",SNAMEMA = '".$data[5]."' ";
+$strSQL .=",FNAMEMA = '".$data[6]."' ";
+$strSQL .=",LNAMEMA = '".$data[7]."' ";
+$strSQL .=",TELMA = '".$data[8]."' ";
+$strSQL .=",FAMILYSTATUS = '".$data[9]."' ";
+$strSQL .="WHERE NID = '".$nid."' ";
+$objQuery = mysql_query($strSQL);
+//mysql_affected_rows();
+
+
+    if($objQuery) { ?>
+                
+                <div class="alert alert-success" align="center">
+              <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+               </div>
+        <?php   echo "<script type=\"text/javascript\">";
+                echo "window.location=\"index.php?edite=true\" ";
+                echo "</script>";      
+        ?>
+    <?php   
+    } 
+    else {   ?>
+  
+               <div class="alert alert-danger" align="center">
+              <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+               </div>
+        <?php
+    }
+        
+mysql_close($connected); 
+}
+?>
+
+<?php
+function selectcomeschool(){
+    include "conn.php";
+
+              $sql_studata  = "SELECT * FROM sas_studentdata";
+                $resultstu  = mysql_query($sql_studata);
+                $rows       = mysql_num_rows($resultstu);
+
+               // if ($selectdata = mysql_fetch_array($resultstu)) {
+                $d27 = 0;           
+                $d28 = 0;
+                $d29 = 0;
+                $d30 = 0;
+
+                $M27 = 0;
+                $M28 = 0;
+                $M29 = 0;
+                $M30 = 0;
+
+                while ($row = mysql_fetch_array($resultstu)) {
+                  //printf("ID: %s  Name: %d", $row["SID"], $row["DAYCOME"]);  
+                     if($row["DAYCOME"] == 27){
+                     
+                        if($row["TYPE"] == "1"){
+                         $d27++;
+                        }
+                        if($row["TYPE"] == "4"){
+                         $M27++;
+                        }
+                     }
+                      if($row["DAYCOME"] == 28){
+                       if($row["TYPE"] == "1"){
+                         $d28++;
+                        }
+                        if($row["TYPE"] == "4"){
+                         $M28++;
+                        }
+                     }
+                     if($row["DAYCOME"] == 29){
+                       if($row["TYPE"] == "1"){
+                         $d29++;
+                        }
+                        if($row["TYPE"] == "4"){
+                         $M29++;
+                        }
+                     }
+                     if($row["DAYCOME"] == 30){
+                       if($row["TYPE"] == "1"){
+                         $d30++;
+                        }
+                        if($row["TYPE"] == "4"){
+                         $M30++;
+                        }
+                     }
+                }
+ 
+               // echo   $d27."<br>";
+                //echo   $d28."<br>";
+               // echo   $d29."<br>";
+               // echo   $d30."<br>";
+      
+
+   // mysql_close($connected);    
+
+    return array($d27,$d28,$d29,$d30,$M27,$M28,$M29,$M30);
+}
+?>

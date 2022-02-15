@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>หน้าตรวจสอบ ข้อมูลนักเรียน ตามวันที่เข้าอยู่ในทะเบียนบ้าน</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/shop-item.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Pattaya|Pridi|Prompt|Sriracha" rel="stylesheet">
+        <link href="datepicker/css/datepicker.css" rel="stylesheet" media="screen">
+        <link href="datepicker/css/datepicker.css" rel="stylesheet" media="screen">
+</head>
+<body>
+
+<div class="container">
+    <div class="row"> 
+            <div class="col-md-12 text-center">
+               <h2> ตรวจสอบ ข้อมูลนักเรียน ตามวันที่เข้าอยู่ในทะเบียนบ้านในเขตพื้นที่บริการ </br> ของโรงเรียนธาตุนารายณ์วิทยา 5 ตำบล ได้แก่ ธาตุเชิงชุม ธาตุนาเวง พังขว้าง ฮางโฮง เชียงเครือ</h2> <br>
+            </div>
+    </div>
+    <div class="row"> 
+            <div class="form-group form-group-lg text-right ">
+                    <label class=" col-md-3 control-label" for="formGroupInputLarge"> ผลลัพธ์ :  </label>
+                    <div class="col-md-6 text-left">
+                           
+                            <input class="form-control input-lg" type="text" id="tmdiff" name="diff" disabled>       
+                    </div>
+                    <div class="col-md-3"> </div>
+                    
+                   </div>
+        </div>
+        <div class="row"> 
+            <div class=" col-md-12"><br><br><br>
+                <div class="alert alert-danger text-center" role="alert">
+                        <i><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> เลือกวันเดือนปี ตามที่ระบุวันเข้าอยู่ในทะเบียนบ้านในเขตพื้นที่บริการของโรงเรียนธาตุนารายณ์วิทยา ตัวอย่าง รูปแบบ 16/05/2561 แล้วกดปุ่ม  <span class="glyphicon glyphicon-console" aria-hidden="true"></span> Enter</i>
+                    </div>
+            </div>
+        </div>
+    <div class="row"> 
+    <div class="form-group form-group-lg text-right">
+        <label class=" col-md-3 control-label" for="formGroupInputLarge"> วัน/เดือน/ปี ตามวันที่เข้าอยู่ในทะเบียนบ้าน : รูปแบบ 16/05/2561  </label>
+        <div class="col-md-6 text-left">
+               
+            <input class="form-control input-lg datepicker" type="text"  id="end" name="end" onChange="TimeDriff()"
+            data-provide="datepicker" data-date-language="th-th" value="01/01/2550"  
+            >        
+        </div>
+        <div class="col-md-3"> </div>
+        
+       </div>
+
+  </div>  
+    </div>
+
+    <script src="js/jquery.js"></script>
+        
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js">
+    </script>
+   
+<!-- datepicker js -->
+<!--script src="js/jquery.js"></script-->
+<!--script src="//getbootstrap.com/2.3.2/assets/js/google-code-prettify/prettify.js"></script-->
+<script src="datepicker/js/bootstrap-datepicker.js"></script>
+<script src="datepicker/js/bootstrap-datepicker-thai.js"></script>
+<script src="datepicker/js/locales/bootstrap-datepicker.th.js"></script>
+<script src="js/validator.js"></script>
+<script src="js/sc.js"></script>
+
+<SCRIPT language="javascript">
+
+        $(document).ready(function(){
+            $(".datepicker").datepicker().on('show', function(e){
+            $('.prev').text('<<<');
+                $('.next').text(">>>");
+            });
+        });
+        
+        function TimeDriff()
+        {
+            var diff;
+            var start = new Array(3);
+            var end = new Array(3);
+            /*var st = document.getElementById('start').value;*/
+            var st = '15/05/2561';
+            var en = document.getElementById('end').value;
+        
+            //Thai DateFormat 15/08/2552 - DD/MM/YYYY
+        
+            //Split Start -> Date/Month/Year
+            start[0] = st.substr(0,2);
+            start[1] = st.substr(3,2);
+            start[2] = st.substr(6,4);
+        
+            //Split End -> Date/Month/Year
+            end[0] = en.substr(0,2);
+            end[1] = en.substr(3,2);
+            end[2] = en.substr(6,4);
+        
+            end[1] -= 1;
+            start[1] -= 1;
+        
+            end[2] -= 543;
+            start[2] -= 543;
+        
+            StratDate = new Date( );
+            EndDate = new Date( );
+        
+            StratDate.setDate(start[0]);
+            StratDate.setMonth(start[1]);
+            StratDate.setFullYear(start[2]);
+        
+            EndDate.setDate(end[0]);
+            EndDate.setMonth(end[1]);
+            EndDate.setFullYear(end[2])
+        
+            if(StratDate.getTime( ) < EndDate.getTime( ))
+            {
+                //diff = EndDate.getTime( ) - StratDate.getTime( );
+                //diff = Math.floor(diff / (1000 * 60 * 60 * 24));
+                diff = "นักเรียนทั่วไป";
+             }
+            else if(EndDate.getTime( ) < StratDate.getTime( ))
+            {
+                diff = "นักเรียนในเขตพื้นที่";
+            }
+            else if(EndDate.getTime( ) == StratDate.getTime( ))
+            {
+                diff = "นักเรียนในเขตพื้นที่";
+            }
+        
+            if(diff==undefined)
+                document.getElementById("tmdiff").value = "";
+            else
+                document.getElementById("tmdiff").value = diff;
+        }
+        
+        </SCRIPT>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <meta content="IE=edge" http-equiv="X-UA-Compatible">
+                <meta content="width=device-width, initial-scale=1" name="viewport">
+                    <meta content="" name="description">
+                        <meta content="" name="author">
+                            <title>
+                                Student Admission System
+                            </title>
+                            <!-- Bootstrap Core CSS -->
+                            <link href="css/bootstrap.min.css" rel="stylesheet">
+                                <!-- Custom CSS -->
+                                <link href="css/shop-item.css" rel="stylesheet">
+                                    <link href="https://fonts.googleapis.com/css?family=Pattaya|Pridi|Prompt|Sriracha" rel="stylesheet">
+                                        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                                        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+                                        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+                                    </link>
+                                </link>
+                            </link>
+                        </meta>
+                    </meta>
+                </meta>
+            </meta>
+        </meta>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="border-bottom:#fcc6d3 2px solid; background:#c7254e;">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+                        <span class="sr-only">
+                            Toggle navigation
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                    </button>
+                    <a class="navbar-brand navbar-nav" href="#">
+                        <span class="glyphicon glyphicon-fire">
+                        </span>
+                        Student Admission System
+                    </a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a class="navbar-nav" href="#">
+                                About
+                            </a>
+                        </li>
+                        <li>
+                            <a class="navbar-nav" href="#">
+                                Services
+                            </a>
+                        </li>
+                        <li>
+                            <a class="navbar-nav" href="#">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class="navbar-nav" href="#">
+                                <span class="glyphicon glyphicon-globe">
+                                </span>
+                                เข้าสู่ระบบเจ้าหน้าที่รับสมัคร
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+        <!-- Page Content -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <!--p class="lead">Banglamung School</p!-->
+                    <div class="list-group">
+                        <a class="list-group-item active" href="#">
+                            <span class="glyphicon glyphicon-education">
+                            </span>
+                            กรอกใบสมัคร
+                        </a>
+                        <a class="list-group-item" href="#">
+                            <span class="glyphicon glyphicon-send">
+                            </span>
+                            ระเบียบการสมัคร
+                        </a>
+                        <a class="list-group-item" href="#">
+                            <span class="glyphicon glyphicon-calendar">
+                            </span>
+                            ปฏิทินการรับสมัคร
+                        </a>
+                        <a class="list-group-item" href="#">
+                            <span class="glyphicon glyphicon-user">
+                            </span>
+                            ระดับชั้นที่เปิดรับ
+                        </a>
+                        <a class="list-group-item" href="#">
+                            <span class="glyphicon glyphicon-exclamation-sign">
+                            </span>
+                            เงื่อนไขของการสมัคร
+                        </a>
+                        <a class="list-group-item" href="#">
+                            <span class="glyphicon glyphicon-time">
+                            </span>
+                            กำหนดการมอบตัว/รายงานตัว
+                        </a>
+                        <a class="list-group-item" href="#">
+                            <span class="glyphicon glyphicon-list-alt">
+                            </span>
+                            เอกสารมอบตัว
+                        </a>
+                        <a class="list-group-item" href="#">
+                            <span class="glyphicon glyphicon-check">
+                            </span>
+                            ตรวจสอบสถานะการสมัคร
+                        </a>
+                        <a class="list-group-item" href="#">
+                            <span class="glyphicon glyphicon-print">
+                            </span>
+                            พิมพ์ใบสมัคร
+                        </a>
+                        <a class="list-group-item" href="#">
+                            <span class="glyphicon glyphicon-book">
+                            </span>
+                            คู่มือการสมัคร
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="thumbnail">
+                        <!--img class="img-responsive" src="http://placehold.it/800x300" alt=""!-->
+                        <img alt="" class="img-responsive" src="img/banner1501.png">
+                            <div class="caption-full">
+                                <!--h4 class="pull-right">$24.99</h4-->
+                                <h3 class="text-center">
+                                    <a href="#">
+                                        เข้าสู่ระบบผู้สมัครสอบ
+                                    </a>
+                                </h3>
+                                <br/>
+                                <form class="form-horizontal">
+                                    <div class="form-group form-group-lg">
+                                        <label class="col-sm-2 control-label" for="formGroupInputLarge">
+                                            เลขที่ใบสมัคร
+                                        </label>
+                                        <!--label for="inputEmail3" class="col-sm-2 control-label">เลขที่ใบสมัคร</label-->
+                                        <div class="col-sm-10">
+                                             
+                                            <input class="form-control input-lg" id="user" placeholder="Register Number" type="text" required="" autofocus="">
+                                            </input>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-lg">
+                                        <label class="col-sm-2 control-label" for="formGroupInputLarge">
+                                            รหัสผ่าน
+                                        </label>
+                                        <!--label for="inputPassword3" class="col-sm-2 control-label">รหัสผ่าน</label-->
+                                        <div class="col-sm-10">
+                                       
+                                            <input class="form-control input-lg" id="inputPassword3" placeholder="Password" type="password" required="">
+                                            </input>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox">
+                                                        Remember me
+                                                    </input>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10 text-center">
+                                            <button name="login" class="btn btn-success btn-lg" 
+                                            type="submit" value="Login" >
+                                                เข้าสู่ระบบ
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </img>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+        <div class="container">
+            <hr>
+                <!-- Footer -->
+                <footer>
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <p>
+                                Copyright © งานพัฒนาระบบเทคโนโลยีสารสนเทศ โรงเรียนบางละมุง
+                            </p>
+                        </div>
+                    </div>
+                </footer>
+            </hr>
+        </div>
+        <!-- /.container -->
+        <!-- jQuery -->
+        <script src="js/jquery.js">
+        </script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js">
+        </script>
+    </body>
+</html>
