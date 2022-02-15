@@ -6,6 +6,8 @@ session_start();
 //<th width="15%">เปลี่ยน</th>
 $naid = $_SESSION["NaID"];
 
+echo $naid;
+
 if (isset($_POST["action"])) {
   $connect = mysqli_connect("localhost", "root", "", "admission_web");
   if ($_POST["action"] == "fetch") {
@@ -22,12 +24,16 @@ if (isset($_POST["action"])) {
     </tr>
   ';
     while ($row = mysqli_fetch_array($result)) {
+
+      echo "<br>".$row["doc"];
+      echo "<br>".$row["filename"];
+
       $output .= '
 
     <tr>
-     <td>' . $row["doc"] . '</td>
+     <td>' . $row["doc"]. '</td>
      <td>
-      <img src="doc/' . $row["filename"] . ' "
+      <img src="doc/' . $row["filename"] . '  "
          height="150" width="175" class="img-thumbnail" />
      </td>
      
@@ -48,6 +54,8 @@ if (isset($_POST["action"])) {
     $temp_name = $_FILES["image"]["tmp_name"];
     $file_size = $_FILES["image"]["size"];
     $error = $_FILES["image"]["error"];
+    $nid = $_POST["txtID"];
+    $location = "doc/".$nid.$file_name;
 
     if (!$temp_name) {
       echo "ERROR: Please browse for file before uploading";
@@ -58,21 +66,21 @@ if (isset($_POST["action"])) {
 
 
 
-    function compress_image($source_url, $destination_url, $quality)
-    {
-      $info = getimagesize($source_url);
+    function compressImage($source, $destination, $quality ) {
 
+      $info = getimagesize($source);
+    
       if ($info['mime'] == 'image/jpeg') {
-        $image = imagecreatefromjpeg($source_url);
-        imagejpeg($image, $destination_url, $quality);
-        echo "เพิ่มรูปภาพสำเร็จ";
-      } elseif ($info['mime'] == 'image/gif') {
-        $image = imagecreatefromgif($source_url);
-        imagegif($image, $destination_url);
-      } elseif ($info['mime'] == 'image/png') {
-        $image = imagecreatefrompng($source_url);
-        imagepng($image, $destination_url);
+        $image = imagecreatefromjpeg($source);
       }
+      elseif ($info['mime'] == 'image/gif') {
+        $image = imagecreatefromgif($source);
+      }
+      elseif ($info['mime'] == 'image/png') {
+        $image = imagecreatefrompng($source);
+      }
+      imagejpeg($image, $destination, $quality );
+    
     }
 
 
@@ -85,10 +93,10 @@ if (isset($_POST["action"])) {
       $nid = $_POST["txtID"];
       $doc = $_POST["txtDoc"];
       $date = date("Y-m-d H:i:s");
-      $file_name = $date . $file_name;
+      $file_name = $nid . $file_name;
       $query = "INSERT INTO tbl_images(filename,NID,doc) VALUES ('$file_name',$nid,'$doc')";
       if (mysqli_query($connect, $query)) {
-        $filename = compress_image($temp_name, "doc/" . $file_name, 35);
+        $filename = compressImage($temp_name, $location , 35);
       } else {
         mysqli_error($connect);
         echo 'เพิ่มรูปภาพไม่สำเร็จ!!! กรุณาลองใหม่อีกครั้ง';

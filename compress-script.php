@@ -1,5 +1,4 @@
 <?php
-
 // uploading files on submit
 if(isset($_POST['submit'])){ 
   
@@ -8,22 +7,16 @@ if(isset($_POST['submit'])){
     session_start();
     $_SESSION['msg']= $msg;
     header('location:upload-form.php');
-
 }
-
-
 function upload_image(){
-
     $uploadTo = "uploads/"; 
     $allowImageExt = array('jpg','png','jpeg','gif');
     $imageName = $_FILES['image']['name'];
     $tempPath=$_FILES["image"]["tmp_name"];
     $imageQuality= 60;
-
     $basename = basename($imageName);
     $originalPath = $uploadTo.$basename; 
     $imageExt = pathinfo($originalPath, PATHINFO_EXTENSION); 
-
     if(empty($imageName)){ 
        $error="Please Select files..";
        return $error;
@@ -31,8 +24,7 @@ function upload_image(){
      }else{
    
     if(in_array($imageExt, $allowImageExt)){ 
-
-    $compressedImage = compress_image($tempPath, $originalPath, $imageQuality);
+  $compressedImage = compress_image($tempPath, $originalPath, $imageQuality);
     if($compressedImage){
      return "Image was compressed and uploaded to server";
     }
@@ -42,11 +34,8 @@ function upload_image(){
    }else{
      return "Image Type not allowed";
    }
-
 } 
-
 }
-
 function compress_image($tempPath, $originalPath, $imageQuality){
   
     // Get image info 
@@ -69,8 +58,8 @@ function compress_image($tempPath, $originalPath, $imageQuality){
     } 
      
     // Save image 
-    imagejpeg($image, $originalPath, $imageQuality);    
+    imagejpeg($image, $originalPath, $quality);    
     // Return compressed image 
     return $originalPath; 
-
 }
+?>
