@@ -193,9 +193,9 @@ body {
 <?php if(isset($_GET['catex'])){  ?>
 
 <h5 align="center">ผังเลขที่นั่งสอบ</h5>
-<h5 align="center">สนามสอบโรงเรียนธาตุนารายณ์วิทยา อำเภอเมือง จังหวัดสกลนคร</h5>
+<h5 align="center">สนามสอบโรงเรียนบางละมุง  อำเภอบางละมุง จังหวัดชลบุรี</h5>
 <h5 align="center">ชั้นมัธยมศึกษาปีที่ <?php echo $_GET['le'];  ?>
-<?php if(isset($_GET['op'])){ echo " ประเภท ".$_GET['op'];}   ?>
+<?php if(isset($_GET['op'])){ echo "ประเภท ".$_GET['op'];}   ?>
 
  <?php } ?>       
     <!--/h5>
@@ -224,9 +224,7 @@ body {
 
 
 <tr>
-        <td>แถวที่ 1</td><td>แถวที่ 2</td><td>แถวที่ 3</td><td>แถวที่ 4</td>
-        
-        <!-- <td>แถวที่ 5</td> -->
+        <td>แถวที่ 1</td><td>แถวที่ 2</td><td>แถวที่ 3</td><td>แถวที่ 4</td><td>แถวที่ 5</td>
         
 </tr>
 <?php 
@@ -235,13 +233,13 @@ include('data_tab.php');
 
 
 
-for($x = 0; $x < 5; $x++) { 
+for($x = 0; $x < 8; $x++) { 
 
         $c1=$a+$x;
         $c2=$b-$x;
         $c3=$c+$x;
         $c4=$d-$x;
-        //$c5=$e+$x;
+        $c5=$e+$x;
 
         include('select_check.php');
 
@@ -261,9 +259,9 @@ for($x = 0; $x < 5; $x++) {
             <td>
                 <button <?php echo $disbt4; ?>  onclick="ConfirmExamtest(<?php echo $c4;?>, <?php echo $_GET['catex']; ?>, <?php echo $nid; ?>)" class="<?php echo $colourbt4; ?>"><?php echo $ch4; ?></button>
             </td>
-            <!-- <td>
+            <td>
                 <button <?php echo $disbt5; ?>  onclick="ConfirmExamtest(<?php echo $c5;?>, <?php echo $_GET['catex']; ?>, <?php echo $nid; ?>)" class="<?php echo $colourbt5; ?>"><?php echo $ch5; ?></button>
-            </td> -->
+            </td>
           
          </tr>
 

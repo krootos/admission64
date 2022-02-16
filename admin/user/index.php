@@ -209,7 +209,7 @@ body {
                     <br>
                     <?php
     // include Database connection file 
-    include '../../conn.php';
+    include("../../conn.php");
     
 
     // Design initial table header 
@@ -725,7 +725,8 @@ if(!isset($_GET["le"])){
                 <div class="col-lg-12 text-center">
                     <p>
                         ระบบรับสมัครนักเรียนโรงเรียนธาตุนารายณ์วิทยา </br>
-                        Copyright © ICT Banglamung School
+
+                        สนับสนุนโดย <a href="https://เช่ารถตู้สกลนคร.com" target="_blank">เช่ารถตู้สกลนคร</a>
                     </p>
                 </div>
             </div>

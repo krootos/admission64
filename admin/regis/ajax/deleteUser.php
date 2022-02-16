@@ -12,8 +12,8 @@ include("db_connection.php");
 
     // Updaste User details
     $query = "UPDATE sas_register SET RegisStatus = 0, Daypush = '0' WHERE  RegisID = '$id'";
-    if (!$result = mysql_query($query)) {
-        exit(mysql_error());
+    if (!$result = mysqli_query($mysqli, $query)) {
+        exit(mysqli_error($mysqli));
     }
 }
 

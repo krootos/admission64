@@ -10,12 +10,12 @@ if(isset($_POST['id']) && isset($_POST['id']) != "")
         //$user_id = 5;
     // Get User Details
     $query = "SELECT * FROM sas_register WHERE RegisID = '$user_id'";
-    if (!$result = mysql_query($query)) {
-        exit(mysql_error());
+    if (!$result = mysqli_query($mysqli,$query)) {
+        exit(mysqli_error($mysqli));
     }
     $response = array();
-    if(mysql_num_rows($result) > 0) {
-        while ($row = mysql_fetch_assoc($result)) {
+    if(mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
             $response = $row;
         }
     }
