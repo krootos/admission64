@@ -615,6 +615,7 @@ GROUP BY img.NID ORDER BY sr.RegisID DESC";
                                         while ($row_img = mysqli_fetch_assoc($query_img)) {
                                             //echo $row_img['doc'];
                                             $doc .= $row_img['doc'] . '<br/>';
+                                           
                                         }
                                     }
 
@@ -774,6 +775,10 @@ GROUP BY img.NID ORDER BY sr.RegisID DESC";
 </script-->
     <?php }
     } ?>
+
+
+
+
 </body>
 
 </html>

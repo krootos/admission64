@@ -3,7 +3,7 @@ session_start();
 
 $naid = $_SESSION["NaID"];
 
-echo $naid;
+
 
 if (isset($_POST["action"])) {
   $connect = mysqli_connect("localhost", "root", "", "admission_web");
@@ -22,8 +22,7 @@ if (isset($_POST["action"])) {
   ';
     while ($row = mysqli_fetch_array($result)) {
 
-      echo "<br>".$row["doc"];
-      echo "<br>".$row["filename"];
+      
 
       $output .= '
 

@@ -458,7 +458,7 @@ if(!isset($_GET["le"])){
 
         } // end else{}
 
-
+        
 
 
 
@@ -574,7 +574,7 @@ if(!isset($_GET["le"])){
 
             $a = $row['RegisNaID'].".pdf";
             $pdf_file = "../../fpdf/MyPDF/Thatnaraiwittaya-" . $a;
-
+            
             $data .= '<tr>
                 <td>'.$number.'</td>
                 
@@ -582,7 +582,27 @@ if(!isset($_GET["le"])){
                 <td><a href="'.$pdf_file.'" target="_blank">'.$row['FNAME'].' '.$row['LNAME'].'</a></td>
                 <td>'.$row['OPTIONS'].'</td>
                 <td>'.$daycome.'</td>                             
-                 <td><a href=".././doc/action.php?id='.$row['RegisNaID'].'" target="_blank">เอกสาร</a></td>
+                 <td><a href=".././doc/action.php?id='.$row['RegisNaID'].'" target="_blank">เอกสาร</a>
+                 <br>
+
+                 ';
+                 $row['RegisNaID'];
+                 $sql_img = "SELECT * FROM tbl_images WHERE NID = '" . $row['RegisNaID'] . "' ORDER BY doc ASC";
+                 if ($query_img = mysqli_query($mysqli, $sql_img)) {
+                    $doc = "";
+                    while ($row_img = mysqli_fetch_assoc($query_img)) {
+                        //echo $row_img['doc'];
+                        $data .= $row_img['doc'] . '<br/>';
+                    }
+                    
+                }
+                
+                
+                $data .= '
+                 
+
+
+                 </td>
 
 
                 <td>
@@ -630,7 +650,7 @@ if(!isset($_GET["le"])){
     <!-- /Content Section -->
 
 
-   
+
 
     <!-- Modal - Update User details -->
     <div class="modal fade" id="update_user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -646,7 +666,7 @@ if(!isset($_GET["le"])){
                     <div class="form-group">
                         <label for="update_email">รหัสบัตรประจำตัวประชาชนเดิม</label>
                         <input type="text" id="update_regisnaid" maxlength="13" placeholder="จำนวน 13 หลัก"
-                            class="form-control" disabled/>
+                            class="form-control" disabled />
                     </div>
                     <div class="form-group">
                         <label for="update_email">รหัสบัตรประจำตัวประชาชนใหม่</label>
@@ -654,7 +674,7 @@ if(!isset($_GET["le"])){
                             class="form-control" />
                     </div>
 
-                    
+
 
                 </div>
                 <div class="modal-footer">
