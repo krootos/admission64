@@ -6,8 +6,8 @@ function selectstatistic(){
     include "conn.php";
 
                 $sql_statis = "SELECT * FROM sas_studentdata";
-                $resultsta  = mysql_query($sql_statis);
-                $rows       = mysql_num_rows($resultsta);
+                $resultsta  = mysqli_query($mysqli, $sql_statis);
+                $rows       = mysqli_num_rows($resultsta);
 
                // if ($selectdata = mysql_fetch_array($resultstu)) {
                 $M1  = 0;
@@ -40,7 +40,7 @@ function selectstatistic(){
                 $checksec1   = "1";
                 $checksec4   = "4";
                 $rowall = $rows;
-                while ($row = mysql_fetch_array($resultsta)) {
+                while ($row = mysqli_fetch_array($resultsta)) {
                   //printf("ID: %s  Name: %d", $row["SID"], $row["DAYCOME"]); 
                   if(strcmp($row["TYPE"],$checksec1)==0){ 
                       $M1++;
@@ -108,27 +108,27 @@ list($M1,$M11,$M12,$M4,$M41,$M42,$M43,$M44,$M45,$M46,$M47,$rowall) = selectstati
             "thirteen"  => $M47,
             "fourteen"  => $rowall
 
-     /* echo $M1."<br>";
-    echo $M11."<br>";
-    echo $M12."<br>";
-    echo $M13."<br>";
-    echo $M14."<br>";
-    echo $M4."<br>";
-    echo $M41."<br>";
-    echo $M42."<br>";
-    echo $M43."<br>";
-    echo $M44."<br>"; */
+            /* echo $M1."<br>";
+            echo $M11."<br>";
+            echo $M12."<br>";
+            echo $M13."<br>";
+            echo $M14."<br>";
+            echo $M4."<br>";
+            echo $M41."<br>";
+            echo $M42."<br>";
+            echo $M43."<br>";
+            echo $M44."<br>"; */
 
-  /*  $a[1] = $M1;
-      $a[2] = $M11;
-      $a[3] = $M12;
-      $a[4] = $M13;
-      $a[5] = $M14;
-      $a[6] = $M4;
-      $a[7] = $M41;
-      $a[8] = $M42;
-      $a[9] = $M43;
-      $a[10] = $M44; */
+          /*  $a[1] = $M1;
+              $a[2] = $M11;
+              $a[3] = $M12;
+              $a[4] = $M13;
+              $a[5] = $M14;
+              $a[6] = $M4;
+              $a[7] = $M41;
+              $a[8] = $M42;
+              $a[9] = $M43;
+              $a[10] = $M44; */
 );
     
 
@@ -143,4 +143,3 @@ if(isset($json_data)){
 }
 
 //echo json_encode($a);
-?>

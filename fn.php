@@ -551,12 +551,17 @@ function selectfirst($nid)
 
                                     <td>
                                         <?php
-                                        if ($ex["ExamStuNo"] == "") {
+                                        if (@$ex["ExamStuNo"] == "") {
                                             echo "<span style='color:#ff0000'>รอการออกเลขประจำตัวผู้สมัครสอบ </span>";
-                                        } else { ?>
+                                        } else {
+                                            $a = $_SESSION["NaID"] . ".pdf";
+                                            $pdf_file = "../../fpdf/MyPDF/Thatnaraiwittaya-" . $a;
+                                            
+                                            
+                                            ?>
                                             <a href="fpdf/MyPDF/<?php echo $pdf_file; ?>" target="_blank">
                                                 <span class="glyphicon glyphicon-print" aria-hidden="true"></span> พิมพ์ใบสมัคร
-                                                <?php echo "เลขประจำตัว " . $ex["ExamStuNo"]; ?></a>
+                                             </a>
 
 
                                         <?php

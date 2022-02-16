@@ -30,10 +30,10 @@ $nid = $_GET["keypdf"];
                  
     //$query = "SELECT * FROM sas_register";
    // $result = mysql_query($query);
-    if (!$result = mysql_query($query)) {
-        exit(mysql_error());
+    if (!$result = mysqli_query($mysqli, $query)) {
+        exit(mysqli_error($mysqli));
     }
-    $row = mysql_fetch_array($result);
+    $row = mysqli_fetch_array($result);
 
 require('../../fpdf/fpdf.php');
 define('FPDF_FONTPATH','../../fpdf/font/'); 

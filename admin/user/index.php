@@ -55,10 +55,10 @@ if(isset($_GET["btnAll"]) || isset($_GET["add"])){
 body {
     padding-top: 20px;
 
-    font-family: 'Pridi', serif;
+    /* font-family: 'Pridi', serif; */
     /* font-family: 'Sriracha', cursive;*/
     /*font-family: 'Pattaya', sans-serif;*/
-    /*font-family: 'Prompt', sans-serif;*/
+    font-family: 'Prompt', sans-serif;
 }
 </style>
 
@@ -218,8 +218,6 @@ body {
     $data = '<table class="table table-bordered table-striped">
                         <tr>
                             <th><h4>No.</h4></th>
-                            <th><h4>รหัสเข้าใช้งาน</h4></th>
-                            <th><h4>รหัสผ่าน</h4></th>
                             <th><h4>เลขบัตร</h4></th>
                             <th><h4>ชื่อ - สกุล</h4></th>
                             <th><h4>ประเภทนักเรียน</h4></th>
@@ -227,7 +225,7 @@ body {
                             <th><h4>เอกสาร</h4></th>
                             <th><h4>แก้ไข</h4></th>
                             <th><h4>ลบข้อมูล</h4></th>
-                            <th><h4>ใบมอบตัว</h4></th>
+                            
 
                         </tr>';
 
@@ -561,7 +559,7 @@ if(!isset($_GET["le"])){
                 $crpdf[$row['RegisID']][77] = $row['PAID'];
             
             if($row['FNAME'] != ""){
-                $btedit = '<a class="btn btn-default" href="../../index.php?edite=true&send=admin&adminID='.$row['RegisNaID'].'" >Data</a>';
+                $btedit = '<a class="btn btn-warning" href="../../index.php?edite=true&send=admin&adminID='.$row['RegisNaID'].'" >แก้ไข</a>';
                 $daycome = $row['PLAN1'];
             }else{
               $btedit = " ";
@@ -572,21 +570,14 @@ if(!isset($_GET["le"])){
             }else{
                 $btdel ='';
             }
-            if($row['HID'] != ""){
-                
-                $btpdf = '<a class="btn btn-success" target="_blank" href="crepdf.php?keypdf='.$row['RegisNaID'].'" >PDF</a>';
-
-            }else{
-                $btpdf = 'ยังไม่กรอกข้อมูลเพิ่มเติม';
-            }
+            
 
             $a = $row['RegisNaID'].".pdf";
             $pdf_file = "../../fpdf/MyPDF/Thatnaraiwittaya-" . $a;
 
             $data .= '<tr>
                 <td>'.$number.'</td>
-                <td>'.$row['RegisNO'].'</td>
-                <td>'.$row['RegisPWD'].'</td>
+                
                 <td>'.$row['RegisNaID'].'</td>
                 <td><a href="'.$pdf_file.'" target="_blank">'.$row['FNAME'].' '.$row['LNAME'].'</a></td>
                 <td>'.$row['OPTIONS'].'</td>
@@ -595,16 +586,13 @@ if(!isset($_GET["le"])){
 
 
                 <td>
-                    <button onclick="GetUserDetails('.$row['RegisID'].')" class="btn btn-warning">User</button> 
-                    '.$btedit.'
+                   '.$btedit.'
 
                 </td>
                 <td>
                    '.$btdel.'
                 </td>
-                 <td>
-                '.$btpdf.'
-                </td>
+                
             </tr>';
             $number--;
             $count++;
@@ -642,44 +630,7 @@ if(!isset($_GET["le"])){
     <!-- /Content Section -->
 
 
-    <!-- Bootstrap Modals -->
-    <!-- Modal - Add New Record/User -->
-    <div class="modal fade" id="add_new_record_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Add New Record</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div class="form-group">
-                        <label for="first_name">รหัสเข้าใช้งาน</label>
-                        <input type="text" id="regisno" maxlength="6" placeholder="รหัสเข้าใช้งานตามระเบียบการ"
-                            class="form-control" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="last_name">รหัสผ่าน</label>
-                        <input type="text" id="regispwd" maxlength="12" placeholder="รหัสผ่าน" class="form-control" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">รหัสบัตรประจำตัวประชาชน</label>
-                        <input type="text" id="regisnaid" placeholder="จำนวน 13 หลัก" maxlength="13"
-                            class="form-control" />
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" onclick="addRecord()">Add Record</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- // Modal -->
+   
 
     <!-- Modal - Update User details -->
     <div class="modal fade" id="update_user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -744,16 +695,6 @@ if(!isset($_GET["le"])){
     <!-- Custom JS file -->
     <script type="text/javascript" src="js/script.js"></script>
 
-    <!--script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-75591362-1', 'auto');
-    ga('send', 'pageview');
-
-</script-->
     <?php }} ?>
 </body>
 

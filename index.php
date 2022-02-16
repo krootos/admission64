@@ -270,159 +270,15 @@ if (isset($_POST["login"], $_POST['txtRegisno'], $_POST['txtPwd'])) {
                                         </a>
                             </div>  <!--/.list-group left menu -->
 
-                            <div class="list-group">
-                                <p class="list-group-item "
-                                    style="background-color:#c7254e;border-bottom:#fcc6d3 2px solid; background:#c7254e; color: #fff; ">
-                                    <span class="glyphicon glyphicon-education">
-                                    </span>
-                                    <script src="js/country.js"></script>
-                                    รายงานยอดการสมัครเรียน Online
-                                </p>
-                                
-                                <div class="list-group-item" style="background-color: #fcf6a3;">
-                                    <div style="float: left;">
-                                        <span class="glyphicon glyphicon-send"></span>
-                                        ระดับชั้น ม.1
-                                    </div>
-                                    <div class="text-right">
+                            
 
-                                        <span class="glyphicon glyphicon-user"></span>                                        
-                                        <span id="showDataM1"> </span>
-                                    </div>
-                                </div>
-                                <div class="list-group-item" style="background-color: #fcf6d9;">
-                                    <div style="float: left;">
-                                        <span class="glyphicon glyphicon-map-marker"></span>
-                                        ในเขตพื้นที่ ฯ
-                                    </div>
-                                    <div class="text-right">
-                                        <span class="glyphicon glyphicon-user"></span>
-                                        <span id="showDataM12"> </span>
-                                    </div>
-                                </div>
-                                <div class="list-group-item" style="background-color: #fcf6d9;">
-                                    <div style="float: left;">
-                                        <span class="glyphicon glyphicon-map-marker"></span>
-                                        นอกเขตพื้นที่ ฯ
-                                    </div>
-                                    <div class="text-right">
-                                        <span class="glyphicon glyphicon-user"></span>
-                                        <span id="showDataM11"> </span>
-                                    </div>
-                                </div>
-
-                                <div class="list-group-item" style="background-color: #FAB9CD;">
-                                    <div style="float: left;">
-                                        <span class="glyphicon glyphicon-send"></span>
-                                        ระดับชั้น ม.4
-                                    </div>
-                                    <div class="text-right">
-                                        <span class="glyphicon glyphicon-user"></span>
-                                        <span id="showDataM4"> </span>
-                                    </div>
-                                </div>
-                                <div class="list-group-item" style="background-color: #fce8ee;">
-                                    <div style="float: left;">
-                                        <span class="glyphicon glyphicon-map-marker"></span>
-                                        วิทยาศาสตร์-คณิตศาสตร์
-                                    </div>
-                                    <div class="text-right">
-                                        <span class="glyphicon glyphicon-user"></span>
-                                        <span id="showDataM41"> </span>
-                                    </div>
-                                </div>
-                                
-                                <div class="list-group-item" style="background-color: #fce8ee;">
-                                        <div style="float: left;">
-                                            <span class="glyphicon glyphicon-map-marker"></span>
-                                            วิทยาศาสตร์-คอมพิวเตอร์
-                                        </div>
-                                        <div class="text-right">
-                                            <span class="glyphicon glyphicon-user"></span>
-                                            <span id="showDataM42">  </span>
-                                        </div>
-                                </div>
-
-                                <div class="list-group-item" style="background-color: #fce8ee;">
-                                    <div style="float: left;">
-                                        <span class="glyphicon glyphicon-map-marker"></span>
-                                        อังกฤษ-จีน
-                                    </div>
-                                    <div class="text-right">
-                                        <span class="glyphicon glyphicon-user"></span>
-                                        <span id="showDataM43"> </span>
-                                    </div>
-                                </div>
-
-                                <div class="list-group-item" style="background-color: #fce8ee;">
-                                    <div style="float: left;">
-                                        <span class="glyphicon glyphicon-map-marker"></span>
-                                        อังกฤษ-ญี่ปุ่น
-                                    </div>
-                                    <div class="text-right">
-                                        <span class="glyphicon glyphicon-user"></span>
-                                        <span id="showDataM44"> </span>
-                                    </div>
-                                </div>
-
-                                <div class="list-group-item" style="background-color: #fce8ee;">
-                                    <div style="float: left;">
-                                        <span class="glyphicon glyphicon-map-marker"></span>
-                                        อังกฤษ-เวียดนาม
-                                    </div>
-                                    <div class="text-right">
-                                        <span class="glyphicon glyphicon-user"></span>
-                                        <span id="showDataM45"> </span>
-                                    </div>
-                                </div> 
-
-                                <div class="list-group-item" style="background-color: #fce8ee;">
-                                    <div style="float: left;">
-                                        <span class="glyphicon glyphicon-map-marker"></span>
-                                        อังกฤษ-เกาหลี
-                                    </div>
-                                    <div class="text-right">
-                                        <span class="glyphicon glyphicon-user"></span>
-                                        <span id="showDataM46"> </span>
-                                    </div>
-                                </div>
-
-                                <div class="list-group-item" style="background-color: #fce8ee;">
-                                    <div style="float: left;">
-                                        <span class="glyphicon glyphicon-map-marker"></span>
-                                        ไทย-สังคม
-                                    </div>
-                                    <div class="text-right">
-                                        <span class="glyphicon glyphicon-user"></span>
-                                        <span id="showDataM47"> </span>
-                                    </div>
-                                </div>
-
-                                <div class="list-group-item" style="background-color: #fcf762;">
-                                    <div style="float: left;">
-                                        <span class="glyphicon glyphicon-thumbs-up"></span>
-                                        <B>รวมทั้งหมด</B>
-                                    </div>
-                                    <div class="text-right">
-                                        <span class="glyphicon glyphicon-user"></span>
-                                        <span id="showDataAll"> </span>
-                                    </div>
-                                </div>
-                            </div> <!-- list-group report student -->
-
-                            <div class="thumbnail"><a id="regis"></a>
-                                <a href="#"
-                                    target="_blank"><img alt="" class="img-responsive" src="img/facebook_fan_page1.gif">
-                                </a>
-                                <a href="" target="_blank"><img alt="" class="img-responsive" src=""></a>
-                            </div> <!--/.thumbnail facebook left menu -->
-
+                            
             </div> <!-- end col-md-3 -->
 
             <!-- Right content -->
             <div class="col-md-9">
                 <div class="thumbnail">                  
-                    <img alt="" class="img-responsive" src="img/bannerFanpage.jpg">
+                    <!-- <img alt="" class="img-responsive" src="img/bannerFanpage.jpg"> -->
                         <?php 
                             if (isset($_SESSION["direct"]) && ($_SESSION["direct"] == 1)) { //ตรวจสอบว่าผ่านการ Login หรือยัง
                                 if (isset($_SESSION["NaID"])) {
@@ -640,7 +496,7 @@ if (isset($_POST["login"], $_POST['txtRegisno'], $_POST['txtPwd'])) {
                                 }
 
                                 if (isset($_REQUEST['btnNext4'])) {
-                                    $_SESSION['SAS2'][1] = $_POST['raOption'];
+                                    $_SESSION['SAS2'][1] = @$_POST['raOption'];
                                     
                                     if (!isset($_POST['btnNext1'])) {
                                         if (!isset($_POST['btnNext2'])) {
@@ -889,7 +745,7 @@ if (isset($_POST["login"], $_POST['txtRegisno'], $_POST['txtPwd'])) {
                                                 $dt = checktxtRegisno("A02C4G");
                                                 if ($dt > 0) {
                                                     insertregister($data); // ฟังก์ชั่นกรอกข้อมูล
-                                                    mysql_close();
+                                                    mysqli_close($mysqli);
                                                 } else {?>
                                                             <div class="alert alert-danger text-center" role="alert">
                                                                 <i><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
