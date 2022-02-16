@@ -125,7 +125,7 @@ function insertstudentdata($data1, $data2, $data3, $data4, $data5, $data6, $data
         $sql = "INSERT INTO sas_studentdata";
         $sql .= "(NID, TYPE, OPTIONS, OPTIONSPECIAL, MORE, PLAN1, PLAN2, PLAN3, PLAN4, PLAN5, SNAME, FNAME, LNAME, BIRTHDAY, SEX, RELI, REGINAL, REGINALITY, GROUPBLOOD, HADDRESS, MOO, SOI, ROAD, PROVINCE_ID, DISTRICT_ID, AMPHUR_ID, TEL, EMAIL, GRADUATE, LSCHOOL, GPA, SNAMEFA, FNAMEFA,  LNAMEFA, TELFA, SNAMEMA, FNAMEMA, LNAMEMA, TELMA, FAMILYSTATUS, CREATEDATE, DAYCOME, ID_PROVINCE_SC, OC_FA, OC_MA, TYPEPARENT, SNAMEPA, FNAMEPA, LNAMEPA, TELPA, OC_PA, RELATION, schoolsecond, stuIDold)";
         $sql .= "VALUES ";
-        $sql .= "('" . $nid . "','" . $data1[1] . "','" . $data2[1] . "','" . $data2[1] . "','" . $data2[1] . "','" . $data3[1] . "','" . $data3[2] . "','" . $data3[3] . "','" . $data3[5] . "','" . $data3[6] . "','" . $data4[1] . "','" . $data4[2] . "','" . $data4[3] . "','" . $data4[4] . "'";
+        $sql .= "('" . $nid . "','" . $data1[1] . "','" . $data2[1] . "','" . $data2[1] . "','" . $data2[1] . "','" . $data3[1] . "','" . $data3[2] . "','" . $data3[3] . "','" . @$data3[5] . "','" . @$data3[6] . "','" . $data4[1] . "','" . $data4[2] . "','" . $data4[3] . "','" . $data4[4] . "'";
         $sql .= ",'" . $data4[5] . "','" . $data4[6] . "','" . $data4[7] . "','" . $data4[8] . "','" . $data4[9] . "'";
         $sql .= ",'" . $data5[1] . "','" . $data5[2] . "','" . $data5[3] . "','" . $data5[9] . "','" . $data5[4] . "','" . $data5[6] . "'";
         $sql .= ",'" . $data5[5] . "','" . $data5[7] . "','" . $data5[8] . "','" . $data6[1] . "','" . $data6[2] . "'";
