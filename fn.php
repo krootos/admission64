@@ -301,7 +301,7 @@ function selectfirst($nid)
         //$cutdate = explode(" ",$datecut);
         // $ddmm    = explode("-",$$cutdate[0]);
         //$_SESSION["EDITE"][43]  = $ddmm[2]."/".$ddmm[1]."/".$ddmm[0];
-        //include "create_pdf.php";
+        include "create_pdf.php";
 
  ?>
 

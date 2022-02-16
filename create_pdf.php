@@ -1,13 +1,13 @@
 <?php
+//require_once("../link.php");
+include 'fpdf/fpdf.php';
+define('FPDF_FONTPATH', 'font/');
 
-//echo $_SESSION["EDITE"][13];
+
 if (isset($_SESSION["EDITE"])) {
 
-    //require_once("../link.php");
-    require 'fpdf/fpdf.php';
-    define('FPDF_FONTPATH', 'font/');
-    //$pdf=new FPDF( 'L' , 'mm' ,'A4');   เอกสารแนวนอน
 
+    //echo $_SESSION["EDITE"][13];
     $pdf = new FPDF('P', 'mm', 'A4');
     $pdf->AddPage();
     //$pdf->AddFont('angsana','B','angsanab.php');
@@ -54,7 +54,7 @@ if (isset($_SESSION["EDITE"])) {
         //$pdf->Text(160,49, $_SESSION["EDITE"][41]);
         //$pdf->Text(143, 56.5, $_SESSION["CODE"]); //ชื่อเข้าระบบ //เลขที่ผู้สมัคร
 
-        $pdf->Text(143, 56.5, $_SESSION["EX"][1]);
+        //$pdf->Text(143, 56.5, $_SESSION["EX"][1]);
 
         //$pdf->Text(63,97.5,iconv( 'UTF-8','TIS-620', $mount));
         $pdf->Text(25, 67.5, iconv('UTF-8', 'TIS-620', $_SESSION["EDITE"][8] . " " . $_SESSION["EDITE"][9])); //ชื่อ
@@ -183,7 +183,7 @@ if (isset($_SESSION["EDITE"])) {
         $pdf->Text(138, 201.5, date(" d              m") . "                 " . $year); //วันที่
 
         //บัตรประจำตัวผู้สมัคร (สำหรับโรงเรียน)
-        $pdf->Text(60, 224.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][1])); //เลขที่ผู้สมัครสอบ
+        //$pdf->Text(60, 224.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][1])); //เลขที่ผู้สมัครสอบ
         $pdf->Text(67, 229.5, $n1 . " - " . $n2 . " - " . $n3 . " - " . $n4 . " - " . $n5); //เลข ปชช
         $pdf->Text(50, 235, iconv('UTF-8', 'TIS-620', $_SESSION["EDITE"][8] . " " . $_SESSION["EDITE"][9] . "   " . $_SESSION["EDITE"][10])); //ชื่อ นร.
         $pdf->Text(57, 240, iconv('UTF-8', 'TIS-620', $_SESSION["EDITE"][2])); //ประเภท
@@ -193,14 +193,14 @@ if (isset($_SESSION["EDITE"])) {
             $pdf->SetFont('angsa', '', 14);
         }
         $pdf->Text(45, 250, iconv('UTF-8', 'TIS-620', "ไม่มีแผนการเรียน")); //ม.1 ไม่มีแผนการเรียน
-        $pdf->Text(47, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][3])); //อาคารสอบ1
-        $pdf->Text(85, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][4])); //ห้องสอบ
+        //$pdf->Text(47, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][3])); //อาคารสอบ1
+        //$pdf->Text(85, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][4])); //ห้องสอบ
 
         $pdf->Text(56, 285.5, date(" d        m") . "          " . $year); //วันที่
 
 
         //บัตรประจำตัวผู้สมัคร (นักเรียน)
-        $pdf->Text(161, 224, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][1]));
+        //$pdf->Text(161, 224, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][1]));
         $pdf->Text(167, 229.5, $n1 . " - " . $n2 . " - " . $n3 . " - " . $n4 . " - " . $n5);
         $pdf->Text(150, 234.5, iconv('UTF-8', 'TIS-620', $_SESSION["EDITE"][8] . " " . $_SESSION["EDITE"][9] . "   " . $_SESSION["EDITE"][10]));
         $pdf->Text(160, 240, iconv('UTF-8', 'TIS-620', $_SESSION["EDITE"][2]));
@@ -211,8 +211,8 @@ if (isset($_SESSION["EDITE"])) {
             $pdf->SetFont('angsa', '', 14);
         }
         $pdf->Text(145, 250, iconv('UTF-8', 'TIS-620', "ไม่มีแผนการเรียน")); //ม.1 ไม่มีแผนการเรียน
-        $pdf->Text(153, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][3])); //อาคารสอบ1
-        $pdf->Text(185, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][4])); //ห้องสอบ
+        //$pdf->Text(153, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][3])); //อาคารสอบ1
+        //$pdf->Text(185, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][4])); //ห้องสอบ
 
         $pdf->Text(155, 285.5, date("d        m") . "          " . $year); //วันที่
 
@@ -246,7 +246,7 @@ if (isset($_SESSION["EDITE"])) {
         $pdf->Text(70, 56.5, $n1 . " - " . $n2 . " - " . $n3 . " - " . $n4 . " - " . $n5); //แนวตั้งแกน X , Y //เลข ปชช
         //$pdf->Text(160,50.5, $_SESSION["EDITE"][41]);
         //$pdf->Text(145, 56.5, $_SESSION["CODE"]); //ชื่อเข้าระบบ //เลขที่ผู้สมัคร
-        $pdf->Text(143, 56.5, $_SESSION["EX"][1]);
+        //$pdf->Text(143, 56.5, $_SESSION["EX"][1]);
         //$pdf->Text(63,97.5,iconv( 'UTF-8','TIS-620', $mount));
 
         $pdf->Text(25, 67.5, iconv('UTF-8', 'TIS-620', $_SESSION["EDITE"][8] . " " . $_SESSION["EDITE"][9])); //ชื่อ
@@ -384,7 +384,7 @@ if (isset($_SESSION["EDITE"])) {
 
 
         //บัตรประจำตัวผู้สมัคร (สำหรับโรงเรียน)
-        $pdf->Text(60, 224.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][1])); //เลขที่ผู้สมัครสอบ
+        //$pdf->Text(60, 224.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][1])); //เลขที่ผู้สมัครสอบ
         $pdf->Text(67, 229.5, $n1 . " - " . $n2 . " - " . $n3 . " - " . $n4 . " - " . $n5); //เลข ปชช
         $pdf->Text(50, 234.5, iconv('UTF-8', 'TIS-620', $_SESSION["EDITE"][8] . " " . $_SESSION["EDITE"][9] . "   " . $_SESSION["EDITE"][10])); //ชื่อ นร.
         $pdf->Text(57, 240, iconv('UTF-8', 'TIS-620', $_SESSION["EDITE"][2])); //ประเภทที่สมัคร
@@ -401,13 +401,13 @@ if (isset($_SESSION["EDITE"])) {
         //$pdf->Text(73, 250.5, iconv('UTF-8', 'TIS-620', $_SESSION["EDITE"][57])); //4
         //$pdf->Text(73, 255.5, iconv('UTF-8', 'TIS-620', $_SESSION["EDITE"][58])); //5
 
-        $pdf->Text(45, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][3])); //อาคารสอบ
-        $pdf->Text(85, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][4])); //ห้องสอบ
+        //$pdf->Text(45, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][3])); //อาคารสอบ
+        //$pdf->Text(85, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][4])); //ห้องสอบ
 
         $pdf->Text(57, 286, date("d        m") . "          " . $year); //วันที่
 
         //บัตรประจำตัวผู้สมัคร (นักเรียน)
-        $pdf->Text(161, 224, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][1]));
+        //$pdf->Text(161, 224, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][1]));
         $pdf->Text(167, 229.5, $n1 . " - " . $n2 . " - " . $n3 . " - " . $n4 . " - " . $n5);
         $pdf->Text(150, 234.5, iconv('UTF-8', 'TIS-620', $_SESSION["EDITE"][8] . " " . $_SESSION["EDITE"][9] . "   " . $_SESSION["EDITE"][10]));
         $pdf->Text(160, 240, iconv('UTF-8', 'TIS-620', $_SESSION["EDITE"][2]));
@@ -424,8 +424,8 @@ if (isset($_SESSION["EDITE"])) {
         //$pdf->Text(174, 250.5, iconv('UTF-8', 'TIS-620', $_SESSION["EDITE"][57])); //4
         //$pdf->Text(174, 255.5, iconv('UTF-8', 'TIS-620', $_SESSION["EDITE"][58])); //5
 
-        $pdf->Text(153, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][3])); //อาคารสอบ1
-        $pdf->Text(185, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][4])); //ห้องสอบ
+       //$pdf->Text(153, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][3])); //อาคารสอบ1
+        //$pdf->Text(185, 265.5, iconv('UTF-8', 'TIS-620', $_SESSION["EX"][4])); //ห้องสอบ
 
         $pdf->Text(155, 286, date("d        m") . "          " . $year); //วันที่
 
