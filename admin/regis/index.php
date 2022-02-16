@@ -204,7 +204,7 @@ body {
 <br>
 <?php
     // include Database connection file 
-     include("../../conn.php");
+     include '../../conn.php';
 
     // Design initial table header 
 
@@ -227,17 +227,17 @@ body {
 
     //$query = "SELECT * FROM sas_register";
    // $result = mysql_query($query);
-    if (!$result = mysql_query($query)) {
-        exit(mysql_error());
+    if (!$result = mysqli_query($mysqli, $query)) {
+        exit(mysqli_error($mysqli));
     }
 
     // if query results contains rows then featch those rows 
-     $totalrow = mysql_num_rows($result);
+     $totalrow = mysqli_num_rows($result);
     if($totalrow > 0)
     {
         $count = 0;
         $number = $totalrow;
-        while($row = mysql_fetch_assoc($result))
+        while($row = mysqli_fetch_assoc($result))
         {
 
             //Query มาดู 
@@ -250,12 +250,13 @@ body {
                 ON examno.ExamID = exam.id
                 WHERE examno.ExamNID ='".$row['RegisNaID']. "'";
 
-                if (!$resultcheck = mysql_query($querycheck)) {
-                exit(mysql_error());
+                if (!$resultcheck = mysqli_query($mysqli, $querycheck)) {
+                exit(mysqli_error($mysqli));
                 }
-                    $rowcheck = mysql_num_rows($resultcheck);
+                }
+                    $rowcheck = mysqli_num_rows($resultcheck);
                     if($rowcheck > 0){
-                        $room = mysql_fetch_assoc($resultcheck);
+                        $room = mysqli_fetch_assoc($resultcheck);
           
                       $abcde = 'เลขที่นั่งสอบ: '.$room['ExamStuNo'].' <br> ห้องสอบที่: '.$room['ExamID'].' <br> อาคารสอบ: '.$room['ExamBuilding'].' <br>  เลขที่ห้องสอบ: '.$room['ExamRoomNO'].' <br><button onclick="UnconfirmExamtest('.$room['ExamStuNo'].')" class="btn btn-danger">ยกเลิก</button>';
                 }else{
@@ -427,27 +428,28 @@ body {
         </div>
 
 
-<!-- Jquery JS file -->
-<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <!-- Jquery JS file -->
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 
-<!-- Bootstrap JS file -->
-<script type="text/javascript" src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS file -->
+    <script type="text/javascript" src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 
-<!-- Custom JS file -->
-<script type="text/javascript" src="js/script.js"></script>
+    <!-- Custom JS file -->
+    <script type="text/javascript" src="js/script.js"></script>
 
-<!--script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <!--script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-75591362-1', 'auto');
-    ga('send', 'pageview');
+        ga('create', 'UA-75591362-1', 'auto');
+        ga('send', 'pageview');
 
-</script-->
-<?php }
-} ?>
+    </script-->
+    <?php }
+
+ ?>
 </body>
 </html>
 <?php ?>

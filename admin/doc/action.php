@@ -9,7 +9,7 @@
 
 //echo "fdaffsafs".$naid;
 
- $connect = mysqli_connect("localhost", "admission_web", "MldwSCiq", "student");
+ $connect = mysqli_connect("localhost", "root", "", "admission_web");
 
  $naid = $_GET["id"];
 

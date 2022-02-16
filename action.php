@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-//<td><button type="button" name="update" class="btn btn-warning bt-xs update" id="' . $row["id"] . '">เปลี่ยน</button></td>
-//echo $_SESSION["NaID"];
-//<th width="15%">เปลี่ยน</th>
 $naid = $_SESSION["NaID"];
 
 echo $naid;

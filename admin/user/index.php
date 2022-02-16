@@ -209,7 +209,7 @@ body {
                     <br>
                     <?php
     // include Database connection file 
-    include("../../conn.php");
+    include '../../conn.php';
     
 
     // Design initial table header 
@@ -466,18 +466,18 @@ if(!isset($_GET["le"])){
 
     //$query = "SELECT * FROM sas_register";
    // $result = mysql_query($query);
-    if (!$result = mysql_query($query)) {
-        exit(mysql_error());
+    if (!$result = mysqli_query($mysqli, $query)) {
+        exit(mysqli_error($mysqli));
     }
 
     // if query results contains rows then featch those rows 
-     $totalrow = mysql_num_rows($result);
+     $totalrow = mysqli_num_rows($result);
     if($totalrow > 0)
     {
         $count = 0;
         $number = $totalrow;
 
-        while($row = mysql_fetch_assoc($result))
+        while($row = mysqli_fetch_assoc($result))
         {
            
                 $crpdf[$row['RegisID']][1] = $row['RegisID'];
@@ -495,8 +495,8 @@ if(!isset($_GET["le"])){
                 $crpdf[$row['RegisID']][13] = $row['PLAN1'];
                 $crpdf[$row['RegisID']][14] = $row['PLAN2'];
                 $crpdf[$row['RegisID']][15] = $row['PLAN3'];
-                $crpdf[$row['RegisID']][78] = $row['PLAN4'];
-                $crpdf[$row['RegisID']][79] = $row['PLAN5'];
+                //$crpdf[$row['RegisID']][78] = $row['PLAN4'];
+                //$crpdf[$row['RegisID']][79] = $row['PLAN5'];
                 $crpdf[$row['RegisID']][16] = $row['SNAME'];
                 $crpdf[$row['RegisID']][17] = $row['FNAME'];
                 $crpdf[$row['RegisID']][18] = $row['LNAME'];
