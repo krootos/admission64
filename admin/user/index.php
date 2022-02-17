@@ -53,16 +53,12 @@ if(isset($_GET["btnAll"]) || isset($_GET["add"])){
 </head>
 <style type="text/css">
 body {
-    padding-top: 20px;
-
-    /* font-family: 'Pridi', serif; */
-    /* font-family: 'Sriracha', cursive;*/
-    /*font-family: 'Pattaya', sans-serif;*/
     font-family: 'Prompt', sans-serif;
 }
 </style>
 
 <body>
+    <br>
     <?php if(isset($_SESSION["Role"])){
      if($_SESSION["Role"] == 1){ ?>
     <!-- Navigation -->

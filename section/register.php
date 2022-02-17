@@ -14,7 +14,7 @@
                                             onkeyup="javascript:remainLength();" autofocus=""
                                             value="<?php if(isset($_POST["txtRegisno"])){ echo $_POST["txtRegisno"]; }?>"
                                         >
-                                            
+                                             
                                           
                                             </input>
                                         </div>
